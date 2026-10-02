@@ -1,0 +1,25 @@
+{
+  "name": "Savrajas Admin",
+  "short_name": "Savrajas",
+  "description": "Savrajas Enterprise Executive Admin & Management Hub",
+  "start_url": "/admin.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07090e",
+  "theme_color": "#0077ff",
+  "icons": [
+    {
+      "src": "/assets/images/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/savrajas-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

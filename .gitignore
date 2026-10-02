@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+savrajas-admin/node_modules/
+
+# Build output
+dist/
+savrajas-admin/dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+savrajas-admin/.env
+savrajas-admin/.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Capacitor Android build
+savrajas-admin/android/
+savrajas-admin/.gradle/
+
+# Logs
+*.log
+npm-debug.log*
