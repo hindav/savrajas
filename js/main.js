@@ -474,127 +474,158 @@ function initHeroSlider() {
    3. PORTFOLIO DATA & DYNAMIC SYNC ENGINE
    ========================================================================== */
 const projectDetails = {
-  'elect-capital': {
-    title: 'Elect Capital',
-    category: 'Finance & Wealth Advisory',
-    logo: 'assets/images/elect-capital.png',
-    client: 'Elect Capital Markets',
-    industry: 'Financial Services & Structured Investments',
-    timeline: '4 Months',
-    techStack: 'React, Next.js, Node.js, Highcharts, Tailwind CSS',
-    desc: 'Savrajas engineered a complete corporate digital transformation for Elect Capital, combining an institutional-grade investment portal with a refined brand identity. The platform provides real-time portfolio intelligence, institutional investor disclosures, and bespoke wealth management advisory tools.'
-  },
-  'aitronik': {
-    title: 'Aitronik',
-    category: 'Technology & Automation',
-    logo: 'assets/images/brain_trans.png',
-    client: 'Aitronik Intelligence Ltd.',
-    industry: 'Artificial Intelligence & Robotic Automation',
-    timeline: '6 Months',
-    techStack: 'Python, FastAPI, React, PyTorch, Docker, Kubernetes',
-    desc: 'An AI-powered cognitive automation platform tailored for industrial workflows. Savrajas architected the neural model telemetry engine, visual pipeline orchestration interface, and real-time anomaly detection visualization.'
-  },
-  'toscano-forme': {
-    title: 'Toscano Forme',
-    category: 'Web Development & Luxury',
-    logo: 'assets/images/toscano-forme.png',
-    client: 'Toscano Forme Living',
-    industry: 'Italian Luxury Furniture & Architecture',
+  'ml-sentiment-analyzer': {
+    title: 'ML Sentiment Analyzer',
+    category: 'Machine Learning & NLP',
+    logo: '',
+    client: 'Savrajas Internal R&D',
+    industry: 'AI & Natural Language Processing',
     timeline: '3 Months',
-    techStack: 'Next.js, Three.js, WebGL, GraphQL, Headless Shopify',
-    desc: 'Crafted a bespoke digital flagship that reflects the timeless elegance of Italian furniture design. Features smooth WebGL material previews, room visualizers, and an ultra-fast headless e-commerce checkout.'
+    techStack: 'Python, BERT, Flask, React, AWS SageMaker',
+    desc: 'A real-time sentiment analysis engine that processes social media feeds, customer reviews, and support tickets using fine-tuned BERT transformers. Delivers actionable brand sentiment dashboards with 94% accuracy and sub-second inference latency.'
   },
-  'army-welfare-trust': {
-    title: 'Army Welfare Trust',
-    category: 'Corporate & Institutional',
-    logo: 'assets/images/awt-logo.png',
-    client: 'Army Welfare Trust (AWT)',
-    industry: 'Conglomerate & Institutional Governance',
-    timeline: '5 Months',
-    techStack: 'React, ASP.NET Core, SQL Server, Azure Cloud',
-    desc: 'Designed a unified digital ecosystem serving over 18 diverse commercial units. Built high-security stakeholder portals, integrated enterprise annual reports, and centralized corporate communications.'
+  'image-classifier': {
+    title: 'Image Classification Engine',
+    category: 'Deep Learning & Computer Vision',
+    logo: '',
+    client: 'Enterprise Vision Labs',
+    industry: 'AI & Computer Vision',
+    timeline: '4 Months',
+    techStack: 'Python, TensorFlow, Keras, OpenCV, GCP Vertex AI',
+    desc: 'A production-grade image classification system trained on 50K+ labeled images using custom CNN architectures. Supports multi-class object recognition, defect detection in manufacturing, and automated visual quality assurance pipelines.'
   },
-  'indus-valley-yoga': {
-    title: 'Indus Valley Yoga',
-    category: 'Health & Wellness',
-    logo: 'assets/images/logo-for-website.png',
-    client: 'Indus Valley Yoga Sanctuary',
-    industry: 'Holistic Health, Wellness & Education',
-    timeline: '2.5 Months',
-    techStack: 'Next.js, Tailwind CSS, Stripe Payments, Zoom API',
-    desc: 'A serene, high-performance mindfulness portal featuring live studio session scheduling, on-demand video masterclasses, wellness retreat bookings, and interactive practitioner guidance.'
-  },
-  'nadra': {
-    title: 'NADRA',
-    category: 'Government & Public Sector',
-    logo: 'assets/images/nadra.png',
-    client: 'National Database and Registration Authority',
-    industry: 'Digital Governance & Citizen Identity',
-    timeline: '8 Months',
-    techStack: 'Enterprise Microservices, React, Redis, Cyber-hardened API',
-    desc: 'Engineered intuitive, accessible, and high-security web portals for national citizen registration workflows. Emphasized WCAG 2.1 AAA accessibility, multi-language localization, and sub-second response times.'
-  },
-  'muscat-insurance': {
-    title: 'Muscat Insurance',
-    category: 'Insurance & Claims Portal',
-    logo: 'assets/images/muscat-insurance.png',
-    client: 'Muscat Insurance Company',
-    industry: 'Underwriting, Motor & Health Insurance',
-    timeline: '4.5 Months',
-    techStack: 'Vue.js, Node.js, PostgreSQL, OCR Document Scanner',
-    desc: 'A modern consumer insurance portal featuring instant policy quotes, automated policy renewals, digital KYC, and a 3-step rapid claims submission flow with automated image damage assessment.'
-  },
-  'credible-lending': {
-    title: 'Credible Lending',
-    category: 'Finance & Lending',
-    logo: 'assets/images/Logo-Dark.svg',
-    client: 'Credible Lending Solutions',
-    industry: 'Mortgage & Consumer Credit',
+  'predictive-analytics': {
+    title: 'Predictive Analytics Dashboard',
+    category: 'Data Science & Business Intelligence',
+    logo: '',
+    client: 'DataDriven Corp',
+    industry: 'Data Science & Business Analytics',
     timeline: '3.5 Months',
-    techStack: 'React, Next.js, Plaid Integration, AWS Lambda',
-    desc: 'Automated borrower pre-approval platform that streamlines credit assessments, financial institution synchronization, and dynamic loan scenario modeling in a frictionless, paperless interface.'
+    techStack: 'Python, Scikit-learn, Pandas, Plotly Dash, PostgreSQL',
+    desc: 'An end-to-end ML pipeline that ingests enterprise data, trains gradient-boosted models for revenue forecasting, churn prediction, and demand planning. Interactive dashboards visualize predictions with confidence intervals and feature importance rankings.'
   },
-  'bixits': {
-    title: 'Bixits',
-    category: 'Technology & SaaS',
-    logo: 'assets/images/logo-2.jpg',
-    client: 'Bixits Cloud Platforms',
-    industry: 'DevOps & Observability Software',
+  'recommendation-engine': {
+    title: 'AI Recommendation Engine',
+    category: 'Machine Learning & Personalization',
+    logo: '',
+    client: 'ShopSmart E-Commerce',
+    industry: 'E-Commerce & Personalization',
     timeline: '4 Months',
-    techStack: 'TypeScript, Go, React, ClickHouse, WebSockets',
-    desc: 'Engineered a developer-first SaaS platform for cloud metrics and distributed tracing. Features interactive latency heatmaps, incident alerts, and microservice dependency graph generation.'
+    techStack: 'Python, Surprise, FastAPI, Redis, React, Docker',
+    desc: 'A hybrid recommendation system combining collaborative filtering and content-based approaches. Serves personalized product suggestions to 100K+ users in real time via a REST API, increasing average order value by 28% in A/B testing.'
   },
-  'zap-dental': {
-    title: 'Zap Dental Billing',
-    category: 'Healthcare & Revenue Cycle',
-    logo: 'assets/images/zapDental.webp',
-    client: 'Zap Dental Billing LLC',
-    industry: 'Healthcare IT & Medical Revenue Management',
-    timeline: '3 Months',
-    techStack: 'React, Node.js, HIPAA-Compliant AWS Architecture',
-    desc: 'A specialized medical billing operations hub for dental practices across North America. Automates insurance verification, claims tracking, and accounts receivable reconciliation.'
-  },
-  'a2z-olathe': {
-    title: 'A2Z Olathe',
-    category: 'Business & Logistics',
-    logo: 'assets/images/A2Z_Logo_Full_Final.png',
-    client: 'A2Z Logistics & Services',
-    industry: 'Commercial Facilities & Dispatch',
-    timeline: '3 Months',
-    techStack: 'Next.js, Express, Google Maps Platform, Twilio SMS',
-    desc: 'All-in-one multi-service management platform connecting commercial clients with on-demand facility maintenance, fleet dispatch, and automated client billing.'
-  },
-  'fine-gold-bullion': {
-    title: 'Fine Gold Bullion',
-    category: 'E-Commerce & Precious Metals',
-    logo: 'assets/images/gold-bullion-1-e1724077520252.png',
-    client: 'Fine Gold Bullion Traders',
-    industry: 'Precious Metals Trading & Vault Storage',
+  'nlp-chatbot': {
+    title: 'NLP Smart Chatbot',
+    category: 'Conversational AI & LLM',
+    logo: '',
+    client: 'CustomerFirst Solutions',
+    industry: 'Conversational AI & Customer Support',
     timeline: '5 Months',
-    techStack: 'Next.js, WebSockets, Live Spot Feed API, Magento Engine',
-    desc: 'High-frequency precious metals exchange web app featuring real-time London spot gold/silver feeds, dynamic cart locking against market volatility, and secure insured vault settlement.'
+    techStack: 'Python, LangChain, OpenAI GPT, Pinecone, Next.js',
+    desc: 'An intelligent conversational assistant powered by retrieval-augmented generation (RAG). Understands context across multi-turn dialogues, integrates with knowledge bases, and handles 80% of tier-1 support queries autonomously with 92% satisfaction.'
+  },
+  'fraud-detection': {
+    title: 'Fraud Detection System',
+    category: 'ML & Cybersecurity',
+    logo: '',
+    client: 'SecurePay Financial',
+    industry: 'FinTech & Cybersecurity',
+    timeline: '4.5 Months',
+    techStack: 'Python, XGBoost, Isolation Forest, Kafka, Spark, AWS',
+    desc: 'A real-time fraud detection pipeline processing 10K+ transactions per minute. Uses ensemble anomaly detection models trained on 2M+ historical records to flag suspicious activity with 97.5% precision and under 50ms latency.'
+  },
+  'autovista-car': {
+    title: 'AutoVista — Car Showroom',
+    category: 'Automotive & E-Commerce',
+    logo: '',
+    client: 'AutoVista Motors',
+    industry: 'Automotive & Luxury Vehicles',
+    timeline: '4 Months',
+    techStack: 'Next.js, Three.js, WebGL, Strapi CMS, Stripe Payments',
+    desc: 'A premium car showroom website featuring interactive 3D vehicle configurators, 360° interior tours, real-time pricing calculators, EMI estimators, and test drive booking. Designed to replicate the in-person dealership experience digitally.'
+  },
+  'propnest-property': {
+    title: 'PropNest — Property Platform',
+    category: 'Real Estate & Listings',
+    logo: '',
+    client: 'PropNest Realty',
+    industry: 'Real Estate & Property Management',
+    timeline: '5 Months',
+    techStack: 'React, Node.js, MongoDB, Google Maps API, Cloudinary',
+    desc: 'A full-stack property listing platform with advanced search filters, interactive map-based browsing, virtual property tours, mortgage calculators, and agent-client messaging. Supports both residential and commercial listings across multiple cities.'
+  },
+  'dineflow-restaurant': {
+    title: 'DineFlow — Restaurant Platform',
+    category: 'Food & Hospitality Digitalization',
+    logo: '',
+    client: 'DineFlow Hospitality Group',
+    industry: 'Restaurant & Food Service Technology',
+    timeline: '3.5 Months',
+    techStack: 'React Native, Node.js, Firebase, Razorpay, QR APIs',
+    desc: 'A complete restaurant digitalization suite with QR-code menu ordering, real-time kitchen display systems, table management, POS integration, loyalty programs, and delivery tracking. Reduced order-to-serve time by 40% for pilot restaurants.'
+  },
+  'fitpulse-fitness': {
+    title: 'FitPulse — Fitness Tracker',
+    category: 'Health & Wellness App',
+    logo: '',
+    client: 'FitPulse Health Tech',
+    industry: 'Health, Fitness & Wearable Technology',
+    timeline: '4 Months',
+    techStack: 'React Native, HealthKit, Google Fit API, TensorFlow Lite',
+    desc: 'A cross-platform fitness tracking app with AI-powered workout recommendations, calorie tracking, sleep analysis, and wearable device integration. ML models personalize exercise plans based on user behavior patterns and health goals.'
+  },
+  'edusphere-elearning': {
+    title: 'EduSphere — E-Learning',
+    category: 'EdTech & Learning Management',
+    logo: '',
+    client: 'EduSphere Academy',
+    industry: 'Education Technology & Online Learning',
+    timeline: '5 Months',
+    techStack: 'Next.js, Django, PostgreSQL, AWS MediaConvert, Stripe',
+    desc: 'A feature-rich LMS platform with live video classes, adaptive quizzes, progress analytics, certificate generation, and multi-tenant support for institutions. Handles 5K+ concurrent learners with sub-second page loads.'
+  },
+  'agrisense-agriculture': {
+    title: 'AgriSense — Smart Agriculture',
+    category: 'AgriTech & IoT',
+    logo: '',
+    client: 'AgriSense Technologies',
+    industry: 'Agriculture & IoT Automation',
+    timeline: '6 Months',
+    techStack: 'Python, MQTT, InfluxDB, React, TensorFlow, Raspberry Pi',
+    desc: 'An IoT-driven smart farming platform that collects soil moisture, temperature, and weather data from field sensors. ML models predict optimal irrigation schedules and crop disease risks, reducing water usage by 35% for partner farms.'
+  },
+  'fleetsync-logistics': {
+    title: 'FleetSync — Logistics Dashboard',
+    category: 'Supply Chain & Fleet Management',
+    logo: '',
+    client: 'FleetSync Logistics',
+    industry: 'Supply Chain & Transportation',
+    timeline: '4 Months',
+    techStack: 'React, Node.js, Socket.io, Mapbox, MongoDB, Docker',
+    desc: 'A real-time fleet management dashboard with GPS tracking, route optimization, delivery ETAs, driver analytics, and warehouse inventory sync. Reduced delivery delays by 22% through ML-powered route suggestions.'
+  },
+  'mediconnect-healthcare': {
+    title: 'MediConnect — Telemedicine',
+    category: 'Healthcare & Digital Health',
+    logo: '',
+    client: 'MediConnect Health Systems',
+    industry: 'Healthcare & Telemedicine',
+    timeline: '5 Months',
+    techStack: 'React, Node.js, WebRTC, HIPAA-Compliant AWS, Twilio',
+    desc: 'A HIPAA-compliant telemedicine platform with HD video consultations, e-prescriptions, lab report management, appointment scheduling, and integrated payment processing. Serves 2K+ patient consultations per month.'
+  },
+  'paynova-fintech': {
+    title: 'PayNova — FinTech Wallet',
+    category: 'Finance & Digital Payments',
+    logo: '',
+    client: 'PayNova Financial Services',
+    industry: 'FinTech & Digital Banking',
+    timeline: '6 Months',
+    techStack: 'React Native, Node.js, Ethereum/Solidity, UPI SDK, AWS',
+    desc: 'A next-gen digital wallet app supporting UPI payments, peer-to-peer transfers, bill splitting, blockchain-backed transaction records, and micro-investment features. PCI-DSS Level 1 certified with biometric authentication.'
   }
 };
+
 
 function syncCustomPortfolio() {
   const track = document.querySelector('.portfolio-track');
@@ -746,7 +777,7 @@ function initHorizontalPortfolio() {
   }
 
   function getTotalCards() {
-    return track.querySelectorAll('.project-card').length || 12;
+    return track.querySelectorAll('.project-card').length || 15;
   }
 
   // Helper to update progress bar, buttons, and counter
@@ -960,9 +991,37 @@ function initProjectModal() {
     if (industryEl) industryEl.textContent = data.industry;
     if (timelineEl) timelineEl.textContent = data.timeline;
     if (techEl) techEl.textContent = data.techStack;
-    if (logoEl) {
-      logoEl.src = data.logo;
-      logoEl.alt = data.title;
+    // Dynamic banner and logo/icon presentation
+    const headerBanner = document.getElementById('modalHeaderBanner');
+    const iconWrap = document.getElementById('modalIconWrap');
+    const card = document.querySelector(`.project-card[data-project="${projectId}"]`);
+
+    if (data.logo && data.logo.trim()) {
+      if (logoEl) {
+        logoEl.src = data.logo;
+        logoEl.alt = data.title;
+        logoEl.style.display = 'block';
+      }
+      if (iconWrap) iconWrap.style.display = 'none';
+      if (headerBanner) headerBanner.style.background = '';
+    } else {
+      if (logoEl) {
+        logoEl.src = '';
+        logoEl.style.display = 'none';
+      }
+      if (card) {
+        const mediaBg = card.querySelector('.card-media-bg');
+        const iconSvg = card.querySelector('.card-icon-svg');
+        if (mediaBg && headerBanner) {
+          headerBanner.style.background = mediaBg.style.background || '';
+        }
+        if (iconSvg && iconWrap) {
+          iconWrap.innerHTML = iconSvg.outerHTML;
+          iconWrap.style.display = 'flex';
+        } else if (iconWrap) {
+          iconWrap.style.display = 'none';
+        }
+      }
     }
 
     if (liveLinkBtn) {
