@@ -4,9 +4,12 @@
   "framework": "vite",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/college-project-catalogue", "destination": "/college-project-catelogue.html" },
     { "source": "/college-project-catelogue", "destination": "/college-project-catelogue.html" },
-    { "source": "/admin", "destination": "/admin.html" }
+    { "source": "/college-project-catelogue/", "destination": "/college-project-catelogue.html" },
+    { "source": "/college-project-catalogue", "destination": "/college-project-catelogue.html" },
+    { "source": "/college-project-catalogue/", "destination": "/college-project-catelogue.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/admin/", "destination": "/admin.html" }
   ],
   "headers": [
     {
