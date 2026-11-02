@@ -1,0 +1,27 @@
+{
+  "name": "savrajas-admin-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Savrajas Admin Android App - Real-Time Pricing, Portfolio & Leads Management",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3001 --host",
+    "build": "vite build",
+    "preview": "vite preview --port 3001 --host",
+    "cap:add": "cap add android",
+    "cap:sync": "cap sync android",
+    "cap:copy": "cap copy android",
+    "cap:open": "cap open android",
+    "apk:dev": "vite build && cap sync android && cap open android",
+    "apk:prod": "copy /Y capacitor.config.production.json capacitor.config.json && vite build && cap sync android && cap open android",
+    "apk:build": "copy /Y capacitor.config.production.json capacitor.config.json && vite build && cap sync android && cd android && gradlew assembleDebug && cd .. && if not exist apk mkdir apk && copy /Y android\\app\\build\\outputs\\apk\\debug\\app-debug.apk apk\\savrajas-admin.apk"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.1",
+    "@capacitor/cli": "^7.0.1",
+    "@capacitor/core": "^7.0.1"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}

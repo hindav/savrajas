@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Production build outputs
+dist/
+apk/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Android & Capacitor build artifacts
+android/
+*.apk
+
+# Editor & System files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db

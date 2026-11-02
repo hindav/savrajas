@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>College Major Project - Project Catalogue | Savrajas</title>
+  
+  <!-- Canonical & SEO Meta -->
+  <link rel="canonical" href="https://savrajas.in/college-project-catelogue">
+  <meta name="description" content="75 Software-Only College Major Project Ideas for CSE, IT, AI/ML and Data Science students with modern technology stacks and implementation guides.">
+  <meta name="theme-color" content="#07090e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Project Catalogue">
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/png" href="../assets/images/app-icon.png">
+  <link rel="apple-touch-icon" href="../assets/images/app-icon.png">
+
+  <!-- Google Typography: Poppins & Inter (Matching Savrajas Design System) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/catalogue.css">
+</head>
+<body class="catalogue-body">
+
+  <!-- ========================================================================
+       1. TOP APP BAR / BRAND HEADER
+       ======================================================================== -->
+  <header class="cat-navbar" id="catNavbar">
+    <div class="cat-container nav-inner">
+      <a href="https://savrajas.in/" class="nav-brand" title="Savrajas Home">
+        <img src="../assets/images/savrajas-mark.svg" alt="Savrajas" class="nav-logo-mark">
+        <div class="nav-brand-text">
+          <span class="brand-title">SAVRAJAS</span>
+          <span class="brand-badge">TECHNOLOGY SOLUTIONS</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="https://savrajas.in/" class="nav-pill-btn primary" title="Visit Savrajas Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          <span>Home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. TOP HERO SECTION
+       Only: COLLEGE MAJOR PROJECT and PROJECT CATALOGUE
+       ======================================================================== -->
+  <section class="cat-hero-section">
+    <div class="cat-container hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        <span>COLLEGE MAJOR PROJECT</span>
+      </div>
+
+      <h1 class="hero-main-title">
+        <span class="gradient-text">PROJECT CATALOGUE</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. STICKY INTERACTIVE SEARCH & CATEGORY CONTROLS
+       ======================================================================== -->
+  <section class="cat-controls-sticky-wrap" id="controlsWrap">
+    <div class="cat-container">
+      <div class="search-and-filters-row">
+        
+        <!-- Live Instant Search Box -->
+        <div class="search-input-box">
+          <span class="search-icon-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input 
+            type="search" 
+            id="catalogueSearchInput" 
+            class="search-input-field" 
+            placeholder="Search 75 projects by title, stack (e.g. Python, React, YOLO)..." 
+            autocomplete="off"
+            aria-label="Search college project ideas"
+          >
+          <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search input">&times;</button>
+        </div>
+
+        <!-- View Controls -->
+        <div class="secondary-controls">
+          <!-- Grid / List Toggle -->
+          <button type="button" id="viewToggleBtn" class="view-toggle-btn" title="Toggle Grid / List View">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span id="viewToggleText">Grid</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Touch Horizontal Category Slider -->
+      <div class="category-slider-wrap">
+        <div class="category-pills-row" id="categoryPillsContainer">
+          <!-- Rendered dynamically by js/catalogue.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. MAIN PROJECTS CATALOGUE SECTION
+       ======================================================================== -->
+  <main class="cat-container">
+    
+    <!-- Results Status Bar -->
+    <div class="results-status-row">
+      <div class="results-count-text" id="resultsCount">
+        Showing <strong>75</strong> of <strong>75</strong> projects
+      </div>
+      <div class="active-filters-badges">
+        <button type="button" id="filterResetBtn" class="filter-reset-btn">Reset Filters</button>
+      </div>
+    </div>
+
+    <!-- Projects Grid Container -->
+    <div class="projects-grid" id="projectsGrid">
+      <!-- 75 Project Cards rendered dynamically via js/catalogue.js -->
+      <div class="cat-empty-state" style="grid-column: 1 / -1; padding: 3rem 1rem;">
+        <div class="empty-state-icon">⚡</div>
+        <h3 class="empty-state-title">Loading Project Catalogue...</h3>
+        <p class="empty-state-sub">Assembling 75 software projects across 7 engineering tracks.</p>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- ========================================================================
+       6. PROJECT DETAIL BOTTOM SHEET MODAL (MOBILE-OPTIMIZED)
+       ======================================================================== -->
+  <div class="cat-modal-backdrop" id="projectDetailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="cat-bottom-sheet">
+      <div class="sheet-drag-handle"></div>
+      
+      <div class="sheet-header-bar">
+        <div>
+          <div class="modal-cat-and-num">
+            <span class="card-index-tag" id="modalIndexBadge">#01</span>
+            <span class="card-category-badge" id="modalCatBadge">AI &amp; Generative AI</span>
+          </div>
+          <h2 class="sheet-project-title" id="modalTitle">Project Title</h2>
+        </div>
+        <button type="button" class="sheet-close-btn" onclick="closeProjectModal()" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="sheet-scrollable-body">
+        <h4 class="modal-section-title">Plain-Language Description</h4>
+        <div class="modal-desc-box" id="modalDesc">
+          Project description details...
+        </div>
+
+        <div class="modal-spec-grid">
+          <div class="spec-cell">
+            <span class="spec-label">Suggested Difficulty</span>
+            <span class="spec-value" id="modalDifficulty">Intermediate</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-label">Target Platforms</span>
+            <span class="spec-value">Web / Laptop / Mobile Accessible</span>
+          </div>
+        </div>
+
+        <h4 class="modal-section-title">Suggested Technology Stack</h4>
+        <div class="tools-tags-row" id="modalTools" style="margin-bottom: 1.25rem;">
+          <!-- Tools chips -->
+        </div>
+
+        <h4 class="modal-section-title">Practical Scope &amp; Deliverables</h4>
+        <div class="card-focus-box" style="margin-bottom: 0.5rem;">
+          <span class="focus-bullet">💡</span>
+          <span id="modalFocus">Working prototype focus...</span>
+        </div>
+      </div>
+
+      <div class="sheet-footer-bar">
+        <button type="button" class="btn-modal-action secondary" id="modalFavBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          <span>Bookmark</span>
+        </button>
+        <button type="button" class="btn-modal-action primary" id="modalCopyBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copy Project Brief</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       7. FLOATING ACTION CONTROLS & TOAST NOTIFICATION
+       ======================================================================== -->
+  <button type="button" class="floating-top-btn" id="floatingTopBtn" title="Back to Top" aria-label="Scroll back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <div class="cat-toast" id="catToast" role="alert" aria-live="polite">
+    <span class="toast-check-icon">✓</span>
+    <span id="catToastText">Action completed successfully</span>
+  </div>
+
+  <!-- ========================================================================
+       8. FOOTER
+       ======================================================================== -->
+  <footer class="cat-footer">
+    <div class="cat-container">
+      <div class="footer-brand-row">
+        <a href="https://savrajas.in/" style="display:inline-flex; align-items:center; gap:0.65rem; text-decoration:none; color:inherit;">
+          <img src="../assets/images/savrajas-mark.svg" alt="Savrajas" width="22" height="22" style="border-radius: 6px;">
+          <span class="footer-brand-title">SAVRAJAS COLLEGE MAJOR PROJECT CATALOGUE</span>
+        </a>
+      </div>
+      <p class="footer-desc">
+        Curated repository of 75 software-only engineering project titles and reference architectures.
+      </p>
+      <div style="font-size: 0.76rem; color: var(--cat-text-dim);">
+        &copy; 2026 Savrajas. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="../js/catalogue.js"></script>
+</body>
+</html>
