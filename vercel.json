@@ -4,10 +4,9 @@
   "framework": "vite",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/college-project-catelogue", "destination": "/college-project-catelogue/index.html" },
-    { "source": "/college-project-catalogue", "destination": "/college-project-catelogue/index.html" },
-    { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/((?!assets|college-project-catelogue|admin|.*\\..*).*)", "destination": "/index.html" }
+    { "source": "/college-project-catalogue", "destination": "/college-project-catelogue.html" },
+    { "source": "/college-project-catelogue", "destination": "/college-project-catelogue.html" },
+    { "source": "/admin", "destination": "/admin.html" }
   ],
   "headers": [
     {
