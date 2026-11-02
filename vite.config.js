@@ -16,6 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        admin: resolve(__dirname, 'admin.html'),
         catalogue: resolve(__dirname, 'college-project-catelogue/index.html'),
         catalogueClean: resolve(__dirname, 'college-project-catelogue.html')
       }

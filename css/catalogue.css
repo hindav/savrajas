@@ -1263,3 +1263,12 @@ body.catalogue-body {
   font-size: 0.82rem;
   color: var(--cat-text-muted);
 }
+
+/* Hide grid/list switch on mobile & tablets (kept for desktop) */
+@media (max-width: 991px) {
+  .secondary-controls,
+  #viewToggleBtn,
+  .view-toggle-btn {
+    display: none !important;
+  }
+}
