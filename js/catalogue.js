@@ -323,7 +323,7 @@ function openProjectModal(projectId) {
     `).join('');
   }
 
-  // Bookmark button state in modal
+  // Bookmark button state in modal (if present)
   const modalFavBtn = document.getElementById('modalFavBtn');
   if (modalFavBtn) {
     modalFavBtn.innerHTML = `
@@ -333,6 +333,17 @@ function openProjectModal(projectId) {
       <span>${isBookmarked ? 'Saved' : 'Bookmark'}</span>
     `;
     modalFavBtn.classList.toggle('active', isBookmarked);
+  }
+
+  // Direct WhatsApp Message for Pricing & Details
+  const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
+  if (modalWhatsappBtn) {
+    const formattedId = String(project.id).padStart(2, '0');
+    const toolsStr = Array.isArray(project.tools) ? project.tools.slice(0, 5).join(', ') : '';
+    const whatsappMsg = encodeURIComponent(
+      `Hi Savrajas! 👋\n\nI want details and pricing for College Project #${formattedId}: "${project.title}".\n\nTrack: ${project.categoryName || ''}\nSuggested Stack: ${toolsStr}\nDifficulty: ${project.difficulty || ''}\n\nPlease share source code availability, pricing, and project deliverables.\n\nThank you!`
+    );
+    modalWhatsappBtn.href = `https://wa.me/919699173189?text=${whatsappMsg}`;
   }
 
   projectDetailModal.classList.add('open');
