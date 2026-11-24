@@ -1176,7 +1176,32 @@ async function submitToSheets(data) {
     console.warn('[Quotation] Supabase pushLeadToCloud:', err);
   }
 
-  // Dispatch Email notification directly to hindav@savrajas.in
+  // Dispatch Formspree notification (Direct Email to Admin - https://formspree.io/f/xrpqojrg)
+  try {
+    fetch('https://formspree.io/f/xrpqojrg', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        projectType: data.projectType,
+        addons: data.addons || 'None',
+        maintenance: data.maintenance || 'None',
+        tier: data.tier || 'Custom',
+        totalPrice: `₹${(data.totalPrice || 0).toLocaleString('en-IN')}`,
+        source: 'Savrajas Website - Quotation Builder',
+        submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      })
+    }).catch(err => console.warn('[Quotation] Formspree dispatch error:', err));
+  } catch (err) {
+    console.warn('[Quotation] Formspree dispatch error:', err);
+  }
+
+  // Dispatch Email notification directly to hindav@savrajas.in (Backup)
   try {
     fetch('https://formsubmit.co/ajax/hindav@savrajas.in', {
       method: 'POST',

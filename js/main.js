@@ -1193,7 +1193,30 @@ function initContactForm() {
       console.warn('[ContactForm] Supabase cloud push error:', err);
     }
 
-    // 3. Dispatch Email notification directly to hindav@savrajas.in
+    // 3. Dispatch Formspree notification (Direct Email to Admin - https://formspree.io/f/xrpqojrg)
+    try {
+      fetch('https://formspree.io/f/xrpqojrg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          phone: phone,
+          serviceNeeded: serviceLabel,
+          estimatedBudget: budgetInfo.label,
+          message: msg || 'Direct contact form inquiry',
+          source: 'Savrajas Website - Contact Form',
+          submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      }).catch(err => console.warn('[ContactForm] Formspree dispatch error:', err));
+    } catch (err) {
+      console.warn('[ContactForm] Formspree dispatch error:', err);
+    }
+
+    // 4. Dispatch Email notification directly to hindav@savrajas.in (Backup)
     try {
       fetch('https://formsubmit.co/ajax/hindav@savrajas.in', {
         method: 'POST',
