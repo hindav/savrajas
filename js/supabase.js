@@ -4,19 +4,30 @@
    ========================================================================== */
 
 const DEFAULT_SUPABASE_URL = 'https://npcvgvpzaznzgisrhhea.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wY3ZndnB6YXpuemdpc3JoaGVhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODYzNDQsImV4cCI6MjEwNjI2MjM0NH0.U64W_BpvN7tuCAtW_qIvDNG5E9TEHw3fdR95G8wqDws';
 
 export function getSupabaseConfig() {
-  const url = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_URL) || DEFAULT_SUPABASE_URL;
+  let url = '';
   let anonKey = '';
   
   // 1. Check user manual override in localStorage
   if (typeof localStorage !== 'undefined') {
+    url = localStorage.getItem('savrajas_supabase_url') || '';
     anonKey = localStorage.getItem('savrajas_supabase_anon_key') || '';
+  }
+  
+  if (!url) {
+    url = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_URL) || DEFAULT_SUPABASE_URL;
   }
   
   // 2. Check .env environment variable
   if (!anonKey && typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_SUPABASE_ANON_KEY) {
     anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY.trim();
+  }
+
+  // 3. Fallback to default production anon key
+  if (!anonKey) {
+    anonKey = DEFAULT_SUPABASE_ANON_KEY;
   }
   
   return {
@@ -28,6 +39,21 @@ export function getSupabaseConfig() {
 export function isSupabaseConfigured() {
   const { anonKey } = getSupabaseConfig();
   return Boolean(anonKey && anonKey.length > 20 && !anonKey.includes('placeholder'));
+}
+
+export function saveSupabaseConfig(url, key) {
+  if (typeof localStorage !== 'undefined') {
+    if (url && url.trim()) {
+      localStorage.setItem('savrajas_supabase_url', url.trim());
+    } else {
+      localStorage.removeItem('savrajas_supabase_url');
+    }
+    if (key && key.trim()) {
+      localStorage.setItem('savrajas_supabase_anon_key', key.trim());
+    } else {
+      localStorage.removeItem('savrajas_supabase_anon_key');
+    }
+  }
 }
 
 export function saveSupabaseAnonKey(key) {

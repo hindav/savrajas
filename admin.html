@@ -322,6 +322,11 @@
           <p class="card-desc" style="font-size:0.78rem; color:var(--admin-text-muted);">Real-time cloud database syncing pricing, portfolio, and website inquiries between your mobile app and website.</p>
           
           <div class="form-group" style="margin-top: 0.85rem;">
+            <label style="font-size:0.75rem; font-weight:600; color:var(--admin-text-muted); display:block; margin-bottom:0.35rem;">Supabase Project URL</label>
+            <input type="url" id="supabaseUrlInput" class="admin-input" placeholder="https://your-project.supabase.co" style="font-family:monospace; font-size:0.8rem;">
+          </div>
+
+          <div class="form-group" style="margin-top: 0.85rem;">
             <label style="font-size:0.75rem; font-weight:600; color:var(--admin-text-muted); display:block; margin-bottom:0.35rem;">Supabase Anon Public API Key</label>
             <div style="display: flex; gap: 0.5rem;">
               <input type="password" id="supabaseAnonKeyInput" class="admin-input" placeholder="Paste anon public key (or set in .env)" style="font-family:monospace; font-size:0.8rem;">
@@ -465,8 +470,21 @@ npx cap open android</code></pre>
         </div>
 
         <div class="form-group">
-          <label>Logo Asset URL</label>
-          <input type="text" id="editLogo" class="admin-input" placeholder="assets/images/elect-capital.png">
+          <label>Project Photo / Cover Image</label>
+          <div class="photo-upload-container">
+            <div id="editPhotoPreviewWrap" class="photo-preview-wrap" style="display:none; margin-bottom:8px;">
+              <img id="editPhotoPreviewImg" src="" alt="Preview" class="photo-preview-img">
+              <button type="button" class="btn-remove-photo" id="removePhotoBtn" title="Remove Photo">✕</button>
+            </div>
+            <div class="photo-upload-controls" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <label for="editPhotoFile" class="btn-file-label">
+                <span>📷 Upload Photo from Phone</span>
+                <input type="file" id="editPhotoFile" accept="image/*" style="display:none;">
+              </label>
+              <span style="font-size:0.75rem; color:var(--admin-text-muted);">or paste image URL:</span>
+              <input type="text" id="editLogo" class="admin-input" placeholder="https://... or photo URL" style="flex:1; min-width:140px;">
+            </div>
+          </div>
         </div>
 
         <div class="form-group">

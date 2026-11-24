@@ -1186,11 +1186,35 @@ function initContactForm() {
       console.warn('[ContactForm] Local save error:', err);
     }
 
-    // 2. Transmit to Supabase Cloud CRM (savrajas_leads table)
+    // 2. Transmit to Supabase Cloud CRM (savrajas_leads table -> Android App CRM)
     try {
       await pushLeadToCloud(leadRecord);
     } catch (err) {
       console.warn('[ContactForm] Supabase cloud push error:', err);
+    }
+
+    // 3. Dispatch Email notification directly to hindav@savrajas.in
+    try {
+      fetch('https://formsubmit.co/ajax/hindav@savrajas.in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Project Inquiry from ${name} - Savrajas Website`,
+          _template: 'table',
+          'Client Name': name,
+          'Email': email,
+          'Phone / WhatsApp': phone,
+          'Service Needed': serviceLabel,
+          'Estimated Budget': budgetInfo.label,
+          'Message': msg || 'Direct contact form inquiry',
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      }).catch(err => console.warn('[ContactForm] Email dispatch error:', err));
+    } catch (err) {
+      console.warn('[ContactForm] Email dispatch error:', err);
     }
 
     // 3. Show feedback toast

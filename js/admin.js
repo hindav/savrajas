@@ -6,6 +6,7 @@
 import {
   getSupabaseConfig,
   isSupabaseConfigured,
+  saveSupabaseConfig,
   saveSupabaseAnonKey,
   pushPricingToCloud,
   fetchPricingFromCloud,
@@ -41,20 +42,86 @@ const DEFAULT_PRICING = {
   }
 };
 
-// --- Default 12 Savrajas Portfolio Projects ---
+// --- Real Savrajas Website Portfolio (6 Flagship AI & ML Projects) ---
 const DEFAULT_PORTFOLIO = [
-  { id: 'elect-capital', title: 'Elect Capital', client: 'Elect Capital Markets', category: 'Finance', industry: 'Financial Services', timeline: '4 Months', techStack: 'React, Next.js, Node.js, Highcharts', tags: 'Web, Corporate, Brand', logo: 'assets/images/elect-capital.png', desc: 'Complete corporate digital transformation combining an institutional-grade investment portal with a refined brand identity.' },
-  { id: 'aitronik', title: 'Aitronik', client: 'Aitronik Intelligence Ltd.', category: 'Technology', industry: 'Artificial Intelligence & Robotics', timeline: '6 Months', techStack: 'Python, FastAPI, React, PyTorch, Docker', tags: 'Technology, Automation, Web', logo: 'assets/images/brain_trans.png', desc: 'AI-powered cognitive automation platform tailored for industrial workflows.' },
-  { id: 'toscano-forme', title: 'Toscano Forme', client: 'Toscano Forme Living', category: 'Web Development', industry: 'Italian Luxury Furniture', timeline: '3 Months', techStack: 'Next.js, Three.js, WebGL, Headless Shopify', tags: 'Luxury, Brand, Web', logo: 'assets/images/toscano-forme.png', desc: 'Bespoke digital flagship reflecting the timeless elegance of Italian furniture design.' },
-  { id: 'army-welfare-trust', title: 'Army Welfare Trust', client: 'Army Welfare Trust (AWT)', category: 'Corporate', industry: 'Conglomerate & Institutional', timeline: '5 Months', techStack: 'React, ASP.NET Core, SQL Server, Azure Cloud', tags: 'Corporate, Institutional, Web', logo: 'assets/images/awt-logo.png', desc: 'Unified digital ecosystem serving over 18 diverse commercial units.' },
-  { id: 'indus-valley-yoga', title: 'Indus Valley Yoga', client: 'Indus Valley Sanctuary', category: 'Health & Wellness', industry: 'Holistic Health & Wellness', timeline: '2.5 Months', techStack: 'Next.js, Tailwind CSS, Stripe Payments, Zoom API', tags: 'Wellness, Yoga, Web', logo: 'assets/images/logo-for-website.png', desc: 'Serene, high-performance mindfulness portal featuring live session scheduling and video masterclasses.' },
-  { id: 'nadra', title: 'NADRA', client: 'National Database Authority', category: 'Government', industry: 'Digital Governance & Identity', timeline: '8 Months', techStack: 'Enterprise Microservices, React, Redis, Hardened API', tags: 'Government, Public Sector, Web', logo: 'assets/images/nadra.png', desc: 'High-security web portals for national citizen registration workflows.' },
-  { id: 'muscat-insurance', title: 'Muscat Insurance', client: 'Muscat Insurance Co.', category: 'Insurance', industry: 'Motor & Health Underwriting', timeline: '4.5 Months', techStack: 'Vue.js, Node.js, PostgreSQL, OCR Scanner', tags: 'Insurance, Portal, Web', logo: 'assets/images/muscat-insurance.png', desc: 'Modern consumer insurance portal featuring instant quotes and 3-step rapid claims submission.' },
-  { id: 'credible-lending', title: 'Credible Lending', client: 'Credible Lending Solutions', category: 'Finance', industry: 'Mortgage & Consumer Credit', timeline: '3.5 Months', techStack: 'React, Next.js, Plaid API, AWS Lambda', tags: 'Finance, Lending, Web', logo: 'assets/images/Logo-Dark.svg', desc: 'Automated borrower pre-approval platform that streamlines credit assessments.' },
-  { id: 'bixits', title: 'Bixits', client: 'Bixits Cloud Platforms', category: 'Technology', industry: 'DevOps & Observability SaaS', timeline: '4 Months', techStack: 'TypeScript, Go, React, ClickHouse, WebSockets', tags: 'Technology, SaaS, Web', logo: 'assets/images/logo-2.jpg', desc: 'Developer-first SaaS platform for cloud metrics and distributed tracing.' },
-  { id: 'zap-dental', title: 'Zap Dental Billing', client: 'Zap Dental Billing LLC', category: 'Healthcare', industry: 'Dental Revenue Cycle Management', timeline: '3 Months', techStack: 'React, Node.js, HIPAA-Compliant AWS', tags: 'Healthcare, Billing, Web', logo: 'assets/images/zapDental.webp', desc: 'Specialized medical billing operations hub for dental practices across North America.' },
-  { id: 'a2z-olathe', title: 'A2Z Olathe', client: 'A2Z Logistics & Services', category: 'Business', industry: 'Commercial Facilities & Dispatch', timeline: '3 Months', techStack: 'Next.js, Express, Google Maps, Twilio SMS', tags: 'Business, Services, Web', logo: 'assets/images/A2Z_Logo_Full_Final.png', desc: 'All-in-one multi-service management platform connecting commercial clients with on-demand facility maintenance.' },
-  { id: 'fine-gold-bullion', title: 'Fine Gold Bullion', client: 'Fine Gold Bullion Traders', category: 'E-Commerce', industry: 'Precious Metals Trading', timeline: '5 Months', techStack: 'Next.js, WebSockets, Live Spot Feed API', tags: 'E-Commerce, Bullion, Finance', logo: 'assets/images/gold-bullion-1-e1724077520252.png', desc: 'High-frequency precious metals exchange web app featuring live London spot feeds and dynamic cart locking.' }
+  {
+    id: 'ml-sentiment-analyzer',
+    title: 'ML Sentiment Analyzer',
+    client: 'Savrajas Internal R&D',
+    category: 'Machine Learning',
+    industry: 'AI & Natural Language Processing',
+    timeline: '3 Months',
+    techStack: 'Python, BERT, Flask, React, AWS SageMaker',
+    tags: 'NLP, Python, AI',
+    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    iconSvg: `<svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg"><circle cx="40" cy="40" r="36" stroke="white" stroke-width="2" fill="none" opacity="0.3"/><path d="M25 45c0-8.284 6.716-15 15-15s15 6.716 15 15" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="33" cy="38" r="2.5" fill="white"/><circle cx="47" cy="38" r="2.5" fill="white"/><path d="M34 48c1.5 2.5 4 4 6 4s4.5-1.5 6-4" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`,
+    desc: 'A real-time sentiment analysis engine that processes social media feeds, customer reviews, and support tickets using fine-tuned BERT transformers. Delivers actionable brand sentiment dashboards with 94% accuracy and sub-second inference latency.'
+  },
+  {
+    id: 'image-classifier',
+    title: 'Image Classification Engine',
+    client: 'Enterprise Vision Labs',
+    category: 'Deep Learning',
+    industry: 'AI & Computer Vision',
+    timeline: '4 Months',
+    techStack: 'Python, TensorFlow, Keras, OpenCV, GCP Vertex AI',
+    tags: 'CNN, TensorFlow, Computer Vision',
+    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    iconSvg: `<svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg"><rect x="16" y="20" width="48" height="40" rx="4" stroke="white" stroke-width="2.5" fill="none"/><circle cx="30" cy="36" r="5" stroke="white" stroke-width="2"/><path d="M16 50l14-10 8 6 12-14 14 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    desc: 'A production-grade image classification system trained on 50K+ labeled images using custom CNN architectures. Supports multi-class object recognition, defect detection in manufacturing, and automated visual quality assurance pipelines.'
+  },
+  {
+    id: 'predictive-analytics',
+    title: 'Predictive Analytics Dashboard',
+    client: 'DataDriven Corp',
+    category: 'Data Science',
+    industry: 'Data Science & Business Analytics',
+    timeline: '3.5 Months',
+    techStack: 'Python, Scikit-learn, Pandas, Plotly Dash, PostgreSQL',
+    tags: 'ML Pipeline, Pandas, Scikit-learn',
+    gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    iconSvg: `<svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg"><path d="M18 58V26" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M18 58h44" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M24 50l10-14 8 8 10-16 10-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="36" r="3" fill="white" opacity="0.6"/><circle cx="52" cy="28" r="3" fill="white" opacity="0.6"/></svg>`,
+    desc: 'An end-to-end ML pipeline that ingests enterprise data, trains gradient-boosted models for revenue forecasting, churn prediction, and demand planning. Interactive dashboards visualize predictions with confidence intervals.'
+  },
+  {
+    id: 'recommendation-engine',
+    title: 'AI Recommendation Engine',
+    client: 'ShopSmart E-Commerce',
+    category: 'Machine Learning',
+    industry: 'E-Commerce & Personalization',
+    timeline: '4 Months',
+    techStack: 'Python, Surprise, FastAPI, Redis, React, Docker',
+    tags: 'Collaborative Filtering, Python, API',
+    gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+    iconSvg: `<svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg"><circle cx="40" cy="28" r="8" stroke="white" stroke-width="2.5" fill="none"/><circle cx="22" cy="52" r="6" stroke="white" stroke-width="2" fill="none"/><circle cx="58" cy="52" r="6" stroke="white" stroke-width="2" fill="none"/><line x1="34" y1="34" x2="26" y2="48" stroke="white" stroke-width="2"/><line x1="46" y1="34" x2="54" y2="48" stroke="white" stroke-width="2"/><line x1="28" y1="52" x2="52" y2="52" stroke="white" stroke-width="1.5" stroke-dasharray="3 3"/></svg>`,
+    desc: 'A hybrid recommendation system combining collaborative filtering and content-based approaches. Serves personalized product suggestions to 100K+ users in real time via a REST API, increasing average order value by 28%.'
+  },
+  {
+    id: 'nlp-chatbot',
+    title: 'NLP Smart Chatbot',
+    client: 'CustomerFirst Solutions',
+    category: 'Conversational AI',
+    industry: 'Conversational AI & Customer Support',
+    timeline: '5 Months',
+    techStack: 'Python, LangChain, OpenAI GPT, Pinecone, Next.js',
+    tags: 'NLP, Transformers, LLM',
+    gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    iconSvg: `<svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg"><rect x="18" y="20" width="34" height="24" rx="6" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 44l-2 10 10-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="30" r="2" fill="white"/><circle cx="38" cy="30" r="2" fill="white"/><circle cx="46" cy="30" r="2" fill="white"/><rect x="42" y="36" width="22" height="16" rx="4" stroke="white" stroke-width="2" fill="none"/><line x1="48" y1="42" x2="58" y2="42" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="48" y1="47" x2="54" y2="47" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    desc: 'An intelligent conversational assistant powered by retrieval-augmented generation (RAG). Understands context across multi-turn dialogues, integrates with knowledge bases, and handles 80% of tier-1 support queries autonomously.'
+  },
+  {
+    id: 'fraud-detection',
+    title: 'Fraud Detection System',
+    client: 'FinTech Secure Systems',
+    category: 'ML & Security',
+    industry: 'FinTech & Cybersecurity',
+    timeline: '4.5 Months',
+    techStack: 'Python, XGBoost, Scikit-learn, Docker, AWS',
+    tags: 'Anomaly Detection, XGBoost, FinTech',
+    gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    iconSvg: `<svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg"><path d="M40 16l20 10v16c0 12-8 22-20 26-12-4-20-14-20-26V26l20-10z" stroke="white" stroke-width="2.5" fill="none"/><path d="M32 40l5 5 11-11" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    desc: 'Real-time transactional anomaly detection engine flagging fraudulent activities with sub-100ms latency using gradient boosting and cloud microservices.'
+  }
 ];
 
 // --- State Variables ---
@@ -254,6 +321,15 @@ function loadData() {
     currentPortfolioData = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));
   }
 
+  // Purge legacy dummy portfolio if present so real website portfolio is displayed
+  const legacyIds = ['elect-capital', 'aitronik', 'toscano-forme', 'army-welfare-trust', 'indus-valley-yoga', 'nadra', 'muscat-insurance', 'credible-lending', 'bixits', 'zap-dental', 'a2z-olathe'];
+  const isLegacy = Array.isArray(currentPortfolioData) && currentPortfolioData.some(p => legacyIds.includes(p.id) || p.title === 'Elect Capital');
+  const hasReal = Array.isArray(currentPortfolioData) && currentPortfolioData.some(p => p.id === 'ml-sentiment-analyzer');
+  if (isLegacy || !hasReal || !currentPortfolioData || currentPortfolioData.length === 0) {
+    currentPortfolioData = JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO));
+    savePortfolioToStorage();
+  }
+
   // Asynchronously sync from Supabase Cloud if configured
   if (isSupabaseConfigured()) {
     fetchPricingFromCloud().then(cloudPricing => {
@@ -266,10 +342,13 @@ function loadData() {
 
     fetchPortfolioFromCloud().then(cloudProjects => {
       if (cloudProjects && Array.isArray(cloudProjects) && cloudProjects.length > 0) {
-        currentPortfolioData = cloudProjects;
-        savePortfolioToStorage();
-        renderPortfolioManager();
-        renderDashboard();
+        const isCloudLegacy = cloudProjects.some(p => legacyIds.includes(p.id) || p.title === 'Elect Capital');
+        if (!isCloudLegacy) {
+          currentPortfolioData = cloudProjects;
+          savePortfolioToStorage();
+          renderPortfolioManager();
+          renderDashboard();
+        }
       }
     }).catch(() => {});
 
@@ -800,9 +879,10 @@ function renderPortfolioManager(filterQuery = '') {
   const query = filterQuery.toLowerCase().trim();
   const filtered = currentPortfolioData.filter(p => {
     return p.title.toLowerCase().includes(query) ||
-           p.client.toLowerCase().includes(query) ||
-           p.category.toLowerCase().includes(query) ||
-           (p.techStack && p.techStack.toLowerCase().includes(query));
+           (p.client && p.client.toLowerCase().includes(query)) ||
+           (p.category && p.category.toLowerCase().includes(query)) ||
+           (p.techStack && p.techStack.toLowerCase().includes(query)) ||
+           (p.tags && p.tags.toLowerCase().includes(query));
   });
 
   if (filtered.length === 0) {
@@ -810,32 +890,59 @@ function renderPortfolioManager(filterQuery = '') {
     return;
   }
 
-  container.innerHTML = filtered.map(p => `
-    <div class="portfolio-admin-item">
-      <div class="port-item-info">
-        <img src="${p.logo || 'assets/images/app-icon.png'}" alt="${p.title}" class="port-item-thumb" onerror="this.src='assets/images/app-icon.png'">
-        <div class="port-item-text">
-          <div class="port-item-title">${p.title}</div>
-          <div class="port-item-meta">
-            ${p.client} • <span style="color:#38bdf8;">${p.category}</span>
-            ${p.liveLink ? ` • <a href="${p.liveLink}" target="_blank" rel="noopener noreferrer" class="badge-live-link">🔗 Live Site</a>` : ''}
+  container.innerHTML = filtered.map(p => {
+    const gradient = p.gradient || 'linear-gradient(135deg, #0077ff 0%, #00d2ff 100%)';
+    const tagsList = (p.tags || p.category || 'AI')
+      .split(',')
+      .map(t => t.trim())
+      .filter(Boolean);
+    const tagsHtml = tagsList.map(t => `<span class="card-tag">${t}</span>`).join('');
+
+    const photoSrc = p.photo || p.logo || '';
+    const hasPhoto = Boolean(photoSrc && (photoSrc.startsWith('data:image') || photoSrc.startsWith('http') || /\.(png|jpg|jpeg|webp|gif|svg)$/i.test(photoSrc)));
+
+    const iconHtml = p.iconSvg || `
+      <svg width="70" height="70" viewBox="0 0 80 80" fill="none" class="card-icon-svg">
+        <circle cx="40" cy="40" r="32" stroke="white" stroke-width="2.5" fill="none" opacity="0.4"/>
+        <path d="M28 40h24M40 28v24" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    `;
+
+    return `
+      <article class="project-admin-card" data-project="${p.id}">
+        <div class="card-media-bg" style="background: ${gradient}; position:relative; overflow:hidden;">
+          ${hasPhoto ? `<img src="${photoSrc}" alt="${p.title}" class="card-cover-photo" onerror="this.style.display='none'">` : ''}
+          <div class="card-logo-box" style="${hasPhoto ? 'position:relative; z-index:2; background:rgba(0,0,0,0.3); border-radius:12px; padding:4px;' : ''}">
+            ${hasPhoto ? '' : iconHtml}
           </div>
         </div>
-      </div>
-      <div class="port-item-actions">
-        <button class="icon-action-btn" onclick="openEditProjectModal('${p.id}')" title="Edit Project">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-          </svg>
-        </button>
-        <button class="icon-action-btn delete" onclick="deleteProject('${p.id}')" title="Delete Project">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  `).join('');
+        <div class="card-content-box">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+            <div>
+              <h3 class="card-project-title">${p.title}</h3>
+              <p class="card-project-cat">${p.category} • <span style="color:#64748b; font-size:0.75rem;">${p.client || 'Savrajas'}</span></p>
+            </div>
+            <span class="badge-tag green" style="font-size:0.68rem; padding:2px 8px; border-radius:9999px; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); flex-shrink:0;">Live on Site</span>
+          </div>
+
+          ${p.desc ? `<p style="font-size:0.8rem; color:#94a3b8; line-height:1.45; margin-bottom:0.75rem;">${p.desc}</p>` : ''}
+
+          <div class="card-tags">
+            ${tagsHtml}
+          </div>
+
+          <div class="card-admin-actions">
+            <button class="card-action-btn edit-btn" onclick="openEditProjectModal('${p.id}')">
+              <span>✏️ Edit Case Study</span>
+            </button>
+            <button class="card-action-btn delete-btn" onclick="deleteProject('${p.id}')" title="Delete">
+              <span>🗑️ Delete</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
 
   // Search input listener
   const searchInput = document.getElementById('portfolioSearchInput');
@@ -847,20 +954,39 @@ function renderPortfolioManager(filterQuery = '') {
   }
 }
 
+// Photo Preview Helper
+function updatePhotoPreview(url) {
+  const wrap = document.getElementById('editPhotoPreviewWrap');
+  const img = document.getElementById('editPhotoPreviewImg');
+  if (!wrap || !img) return;
+
+  if (url && (url.startsWith('data:image') || url.startsWith('http') || /\.(png|jpg|jpeg|webp|gif|svg)/i.test(url))) {
+    img.src = url;
+    wrap.style.display = 'block';
+  } else {
+    img.src = '';
+    wrap.style.display = 'none';
+  }
+}
+
 // Portfolio CRUD Handlers
 window.openAddProjectModal = function() {
   document.getElementById('projectModalTitle').textContent = 'Add Case Study';
   document.getElementById('editProjectId').value = '';
   document.getElementById('editTitle').value = '';
   document.getElementById('editClient').value = '';
-  document.getElementById('editCategory').value = 'Technology';
-  document.getElementById('editIndustry').value = '';
+  document.getElementById('editCategory').value = 'Machine Learning';
+  document.getElementById('editIndustry').value = 'AI & Deep Learning';
   document.getElementById('editTimeline').value = '3 Months';
-  document.getElementById('editTech').value = 'React, Next.js, Node.js';
-  document.getElementById('editTags').value = 'Web, Corporate, Brand';
-  document.getElementById('editLogo').value = 'assets/images/app-icon.png';
+  document.getElementById('editTech').value = 'Python, PyTorch, React, Cloud';
+  document.getElementById('editTags').value = 'AI, Python, Cloud';
+  document.getElementById('editLogo').value = '';
   document.getElementById('editLiveLink').value = '';
   document.getElementById('editDesc').value = '';
+  updatePhotoPreview('');
+
+  const photoFile = document.getElementById('editPhotoFile');
+  if (photoFile) photoFile.value = '';
 
   document.getElementById('projectEditModal').classList.add('open');
 };
@@ -878,12 +1004,54 @@ window.openEditProjectModal = function(id) {
   document.getElementById('editTimeline').value = p.timeline || '';
   document.getElementById('editTech').value = p.techStack || '';
   document.getElementById('editTags').value = p.tags || '';
-  document.getElementById('editLogo').value = p.logo || '';
+  document.getElementById('editLogo').value = p.photo || p.logo || '';
   document.getElementById('editLiveLink').value = p.liveLink || '';
   document.getElementById('editDesc').value = p.desc || '';
+  updatePhotoPreview(p.photo || p.logo || '');
+
+  const photoFile = document.getElementById('editPhotoFile');
+  if (photoFile) photoFile.value = '';
 
   document.getElementById('projectEditModal').classList.add('open');
 };
+
+// Wire up photo file input and removal
+document.addEventListener('DOMContentLoaded', () => {
+  const photoFileInput = document.getElementById('editPhotoFile');
+  if (photoFileInput) {
+    photoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (re) => {
+          const dataUrl = re.target.result;
+          const logoInput = document.getElementById('editLogo');
+          if (logoInput) logoInput.value = dataUrl;
+          updatePhotoPreview(dataUrl);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  const removePhotoBtn = document.getElementById('removePhotoBtn');
+  if (removePhotoBtn) {
+    removePhotoBtn.addEventListener('click', () => {
+      const logoInput = document.getElementById('editLogo');
+      const photoFileInput = document.getElementById('editPhotoFile');
+      if (logoInput) logoInput.value = '';
+      if (photoFileInput) photoFileInput.value = '';
+      updatePhotoPreview('');
+    });
+  }
+
+  const logoTextInput = document.getElementById('editLogo');
+  if (logoTextInput) {
+    logoTextInput.addEventListener('input', (e) => {
+      updatePhotoPreview(e.target.value.trim());
+    });
+  }
+});
 
 window.closeProjectModal = function() {
   document.getElementById('projectEditModal').classList.remove('open');
@@ -925,7 +1093,7 @@ if (projectForm) {
       if (idx !== -1) {
         currentPortfolioData[idx] = {
           ...currentPortfolioData[idx],
-          title, client, category, industry, timeline, techStack, tags, logo, liveLink, desc
+          title, client, category, industry, timeline, techStack, tags, logo, photo: logo, liveLink, desc
         };
         showToast(`Updated "${title}" ✓`);
       }
@@ -942,6 +1110,7 @@ if (projectForm) {
         techStack,
         tags,
         logo,
+        photo: logo,
         liveLink,
         desc
       });
@@ -1452,6 +1621,7 @@ function initPwaInstall() {
 // ============================================================================
 function initSettingsSupabase() {
   const badge = document.getElementById('supabaseStatusBadge');
+  const urlInput = document.getElementById('supabaseUrlInput');
   const keyInput = document.getElementById('supabaseAnonKeyInput');
   const saveKeyBtn = document.getElementById('saveSupabaseKeyBtn');
   const testConnBtn = document.getElementById('testSupabaseConnBtn');
@@ -1462,12 +1632,15 @@ function initSettingsSupabase() {
 
   function updateStatus() {
     const cfg = getSupabaseConfig();
+    if (urlInput && !urlInput.value && cfg.url) {
+      urlInput.value = cfg.url;
+    }
     if (keyInput && !keyInput.value && cfg.anonKey) {
       keyInput.value = cfg.anonKey;
     }
     if (badge) {
       if (isSupabaseConfigured()) {
-        badge.textContent = '🟢 Cloud Connected';
+        badge.textContent = '🟢 Cloud Configured';
         badge.style.background = 'rgba(34,197,94,0.15)';
         badge.style.color = '#4ade80';
         badge.style.borderColor = 'rgba(34,197,94,0.3)';
@@ -1488,10 +1661,11 @@ function initSettingsSupabase() {
     });
   }
 
-  if (saveKeyBtn && keyInput) {
+  if (saveKeyBtn) {
     saveKeyBtn.addEventListener('click', async () => {
-      const val = keyInput.value.trim();
-      saveSupabaseAnonKey(val);
+      const u = urlInput ? urlInput.value.trim() : '';
+      const val = keyInput ? keyInput.value.trim() : '';
+      saveSupabaseConfig(u, val);
       updateStatus();
       if (!val) {
         showToast('Supabase key removed. Local storage mode active.');
@@ -1502,7 +1676,7 @@ function initSettingsSupabase() {
       if (pricing !== null) {
         showToast('Supabase Connected & Verified! ✓');
       } else {
-        showToast('Key saved. Ensure tables are created in Supabase SQL editor.');
+        showToast('Configuration saved. Click "Test Connection" to verify.');
       }
     });
   }
@@ -1518,7 +1692,7 @@ function initSettingsSupabase() {
       if (pricing !== null) {
         showToast('Supabase Cloud Connection: 200 OK ✓');
       } else {
-        alert('Could not query savrajas_pricing in Supabase.\nPlease verify:\n1. Your Anon Key is correct\n2. You ran supabase_schema.sql in the Supabase SQL Editor\n(Click "Copy Database Setup SQL" button to copy schema).');
+        alert('Could not connect to Supabase Cloud.\n\nPlease check:\n1. Is your Supabase project PAUSED? (Go to supabase.com dashboard and click "Restore")\n2. Is your Project URL and Anon Key correct?\n3. Have you run the SQL schema in Supabase SQL Editor? (Click "Copy Database Setup SQL" to copy).');
       }
     });
   }

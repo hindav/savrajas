@@ -12,6 +12,9 @@ apk/
 
 # Android & Capacitor build artifacts
 android/
+android-app/.gradle/
+android-app/**/build/
+android-app/apk/
 *.apk
 
 # Editor & System files

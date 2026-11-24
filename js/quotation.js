@@ -1168,12 +1168,38 @@ async function submitToSheets(data) {
     localStorage.setItem('savrajas_quote_leads', JSON.stringify(leads));
   } catch (e) {}
 
-  // Sync to Supabase Cloud CRM in background
+  // Sync to Supabase Cloud CRM in background (Feeds Android App CRM)
   try {
     const { pushLeadToCloud } = await import('./supabase.js');
     await pushLeadToCloud(data);
   } catch (err) {
     console.warn('[Quotation] Supabase pushLeadToCloud:', err);
+  }
+
+  // Dispatch Email notification directly to hindav@savrajas.in
+  try {
+    fetch('https://formsubmit.co/ajax/hindav@savrajas.in', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: `New Quotation Request from ${data.name || 'Client'} - Savrajas Website`,
+        _template: 'table',
+        'Client Name': data.name,
+        'Email': data.email,
+        'Phone / WhatsApp': data.phone,
+        'Project Type': data.projectType,
+        'Selected Addons': data.addons || 'None',
+        'Maintenance SLA': data.maintenance || 'None',
+        'Package Tier': data.tier || 'Custom',
+        'Calculated Total': `₹${(data.totalPrice || 0).toLocaleString('en-IN')}`,
+        'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      })
+    }).catch(err => console.warn('[Quotation] Email dispatch error:', err));
+  } catch (err) {
+    console.warn('[Quotation] Email dispatch error:', err);
   }
 
   if (SHEETS_URL && SHEETS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
